@@ -38,10 +38,7 @@ public:
         result.Y = a->Y + b->Y;
         return result;
     }
-    ~Point()
-    {
-        delete this;
-    }
+    ~Point() {}
 private:
     int X;
     int Y;
@@ -62,6 +59,6 @@ int main()
     printf("Sum of p1 and p2:\n");
     result.displayPoint();
     printf("Distant to p1 + p2 symmetrical point = %d\n", result.distance());
-    //delete p1, p2;
+    delete p1, p2;
     return 0;
 }
