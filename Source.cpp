@@ -3,6 +3,8 @@
 class Point {
 public:
     Point() = default;
+    Point(int x, int y)
+    : X(x), Y(y) {}
     void init(int x, int y)
     {
         this->X = x;
@@ -19,7 +21,8 @@ public:
         printf("Enter X and Y coordinates: ");
         scanf("%d%d", &this->X, &this->Y);
     }
-
+    int getX() { return this->X; }
+    int getY() { return this->Y; }
     void displayPoint()
     {
         printf("Coordinates of the given point are: %d %d\n", this->X, this->Y);
@@ -39,9 +42,41 @@ public:
         return result;
     }
     ~Point() {}
-private:
+protected:
     int X;
     int Y;
+};
+
+class Point3 : Point {
+    Point3& operator=(Point b)
+    {
+        this->X = b.getX();
+        this->Y = b.getY();
+        this->Z = b.distance() / 2;
+    }
+    Point3(int x, int y, int z)
+    {
+        Point(x, y);
+        this->Z = z;
+    }
+    void Init(int x, int y, int z)
+    {
+        init(x, y);
+        this->Z = z;
+    }
+    void displayPoint()
+    {
+        printf("Coordinates of the given point are: %d %d %d\n", this->X, this->Y, this->Z);
+    }
+    int distance()
+    {
+        return (this->X - this->Y - this->Z);
+    }
+public:
+    int getZ() { return this->Z; }
+    void setZ(int value) { this->Z = value; }
+private:
+    int Z;
 };
 
 int main()
